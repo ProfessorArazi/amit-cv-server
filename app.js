@@ -1,16 +1,23 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const validator = require("validator");
 const mailSender = require("./src/mailSender");
 
 app.use(express.json());
+app.use(cors({ origin: "*" }));
 app.use(express.static(__dirname + "/public"));
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 
 app.post("/contact", (req, res) => {
   const { name, email, message } = req.body;
   const errors = { name: false, email: false, message: false };
 
-  if (name.trim().length === 0) {
+  if (name.trim().length < 2) {
     errors.name = true;
   }
   if (message.trim().length === 0) {
