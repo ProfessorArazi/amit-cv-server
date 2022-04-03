@@ -3,7 +3,8 @@ const nodemailer = require("nodemailer");
 const mailSender = (name, contact, message) => {
   const email = process.env.MAIL;
   const me = process.env.ME;
-  const transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport("SMTP", {
+    host: "localhost",
     service: "gmail",
     auth: {
       user: email,
@@ -24,6 +25,7 @@ const mailSender = (name, contact, message) => {
     if (error) {
       console.log(error);
     }
+    transporter.close();
   });
 };
 
