@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+require("dotenv").config({ path: __dirname + "/.env" });
 const validator = require("validator");
 const mailSender = require("./src/mailSender");
 
