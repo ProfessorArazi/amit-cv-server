@@ -4,7 +4,6 @@ const mailSender = (name, contact, message) => {
   const email = process.env.MAIL;
   const me = process.env.ME;
   const transporter = nodemailer.createTransport("SMTP", {
-    host: "localhost",
     service: "gmail",
     auth: {
       user: email,
