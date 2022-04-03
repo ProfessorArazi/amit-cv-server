@@ -22,7 +22,7 @@ const mailSender = (name, contact, message) => {
       console.log(response[0].headers);
     })
     .catch((error) => {
-      console.error(error.response.body.errors);
+      console.error(error);
     });
 };
 
