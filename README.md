@@ -1,3 +1,3 @@
-# amit-cv-server
+# Amit-CV-Server
 
 This is my portfolio server
