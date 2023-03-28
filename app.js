@@ -39,7 +39,8 @@ app.post("/contact", (req, res) => {
     return res.status(400).send({ errors, message: "Please enter valid mail" });
   }
 
-  mailSender(name, email, message);
+ const info = mailSender(name, email, message);
+ console.log(info);
   res.status(200).send({ message: "Thanks for contact me" });
 });
 

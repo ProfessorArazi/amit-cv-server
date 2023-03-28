@@ -26,6 +26,7 @@ const mailSender = (name, contact, message) => {
     if (error) {
       throw new Error(error);
     }
+    return info
   });
 };
 
