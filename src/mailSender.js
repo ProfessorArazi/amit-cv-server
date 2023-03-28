@@ -23,6 +23,9 @@ const mailSender = (name, contact, message) => {
     ${message}</p> `,
   };
   
+  console.log("transporter" , transporter);
+  console.log("mailOptions" , mailOptions);
+  
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
      console.log(error)
