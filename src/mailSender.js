@@ -22,9 +22,7 @@ const mailSender = (name, contact, message) => {
   };
   
   
-  console.log(mailOptions);
   transporter.sendMail(mailOptions, function (error, info) {
-    console.log("send" , info)
     if (error) {
      console.log(error)
     }
