@@ -11,7 +11,7 @@ const mailSender = (name, contact, message) => {
   });
   
   const me = process.env.ME;
-  console.log(pass,me);
+  console.log(process.env.PASS,me,email);
 
   const mailOptions = {
     from: email,
