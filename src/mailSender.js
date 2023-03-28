@@ -1,15 +1,15 @@
 const nodemailer = require("nodemailer");
 
 const mailSender = (name, contact, message) => {
+  const email = process.env.MAIL;
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.MAIL,
+      user: email,
       pass: process.env.PASS,
     },
   });
 
-  const email = process.env.MAIL;
   const me = process.env.ME;
 
   const mailOptions = {
@@ -23,7 +23,6 @@ const mailSender = (name, contact, message) => {
   
 
   transporter.sendMail(mailOptions, function (error, info) {
-    console.log(info);
     if (error) {
       throw new Error(error);
     }
