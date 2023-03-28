@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 
 const mailSender = (name, contact, message) => {
+  console.log(name);
   const email = process.env.MAIL;
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -21,17 +22,12 @@ const mailSender = (name, contact, message) => {
     ${message}</p> `,
   };
   
-  let infoData
-  
 
- infoData = transporter.sendMail(mailOptions, function (error, info) {
+  transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       throw new Error(error);
     }
-    return info
   });
-  
-  return infoData
 };
 
 module.exports = mailSender;
