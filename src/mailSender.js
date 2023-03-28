@@ -4,16 +4,15 @@ const mailSender = (name, contact, message) => {
   const email = process.env.MAIL;
   const transporter = nodemailer.createTransport({
     service: "gmail",
-    port: 465,
-    secure: true, 
+    port: 587,
     auth: {
       user: email,
       pass: process.env.PASS,
     },
   });
-  
+
   const me = process.env.ME;
-  
+
   const mailOptions = {
     from: email,
     to: me,
@@ -22,15 +21,18 @@ const mailSender = (name, contact, message) => {
     Contact email : ${contact} <br/>
     ${message}</p> `,
   };
-  
-  console.log("transporter" , transporter);
-  console.log("mailOptions" , mailOptions);
-  
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-     console.log(error)
-    }
-  });
+
+  try {
+    transporter.sendMail(mailOptions, function (error, info) {
+      console.log("sending mail...");
+      if (error) {
+        console.log(error);
+      }
+      console.log(info);
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 module.exports = mailSender;
