@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.send({ message: "listening" });
 });
 
-app.post("/contact", (req, res) => {
+app.post("/contact",async (req, res) => {
   const { name, email, message } = req.body;
   const errors = { name: false, email: false, message: false };
 
@@ -39,7 +39,7 @@ app.post("/contact", (req, res) => {
     return res.status(400).send({ errors, message: "Please enter valid mail" });
   }
 
-  mailSender(name, email, message);
+ await mailSender(name, email, message);
   res.status(200).send({ message: "Thanks for contact me" });
 });
 
