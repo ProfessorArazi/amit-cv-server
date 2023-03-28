@@ -11,8 +11,7 @@ const mailSender = (name, contact, message) => {
   });
   
   const me = process.env.ME;
-  console.log(process.env.PASS,me,email);
-
+  
   const mailOptions = {
     from: email,
     to: me,
@@ -22,10 +21,12 @@ const mailSender = (name, contact, message) => {
     ${message}</p> `,
   };
   
-
+  
+  console.log(mailOptions);
   transporter.sendMail(mailOptions, function (error, info) {
+    console.log("send" , info)
     if (error) {
-      throw new Error(error);
+     console.log(error)
     }
   });
 };
