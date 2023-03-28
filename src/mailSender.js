@@ -21,13 +21,17 @@ const mailSender = (name, contact, message) => {
     ${message}</p> `,
   };
   
+  let infoData
+  
 
-  transporter.sendMail(mailOptions, function (error, info) {
+ infoData = transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       throw new Error(error);
     }
     return info
   });
+  
+  return infoData
 };
 
 module.exports = mailSender;
