@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 const mailSender = (name, contact, message) => {
   const email = process.env.MAIL;
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: "yahoo",
     port: 465,
     secure: true, 
     auth: {
