@@ -22,17 +22,14 @@ const mailSender = (name, contact, message) => {
     ${message}</p> `,
   };
 
-  try {
+  new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, function (error, info) {
-      console.log("sending mail...");
       if (error) {
-        console.log(error);
+        reject(error);
       }
-      console.log(info);
+      resolve("email sent");
     });
-  } catch (e) {
-    console.log(e);
-  }
+  });
 };
 
 module.exports = mailSender;
