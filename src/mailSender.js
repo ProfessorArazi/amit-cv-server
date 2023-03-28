@@ -1,29 +1,33 @@
-const sgMail = require("@sendgrid/mail");
+const nodemailer = require("nodemailer");
 
 const mailSender = (name, contact, message) => {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.MAIL,
+      pass: process.env.PASS,
+    },
+  });
 
   const email = process.env.MAIL;
   const me = process.env.ME;
 
-  const msg = {
-    to: me,
+  const mailOptions = {
     from: email,
+    to: me,
     subject: "Contact via portfolio",
     html: `<p dir='ltr'>Name of contact : ${name} <br/> 
     Contact email : ${contact} <br/>
     ${message}</p> `,
   };
+  
 
-  sgMail
-    .send(msg)
-    .then((response) => {
-      console.log(response[0].statusCode);
-      console.log("working");
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  transporter.sendMail(mailOptions, function (error, info) {
+    console.log(info);
+    if (error) {
+      console.log(error);
+    }
+  });
 };
 
 module.exports = mailSender;
